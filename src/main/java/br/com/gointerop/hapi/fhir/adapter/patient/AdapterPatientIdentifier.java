@@ -11,10 +11,7 @@ import org.hl7.fhir.r4.model.Identifier.IdentifierUse;
 
 import br.com.gointerop.hapi.fhir.adapter.Adapter;
 import br.com.gointerop.hapi.fhir.adapter.IAdapter;
-import br.com.gointerop.hapi.fhir.coding.CodingPatientIdentifier;
-import br.com.gointerop.hapi.fhir.coding.ICoding;
 import br.com.gointerop.hapi.fhir.mapper.MapperPatient;
-import br.gov.pe.recife.esus.system.PatientIdentifier;
 
 public final class AdapterPatientIdentifier extends Adapter<List<Identifier>> {
 	private static IAdapter<List<Identifier>> instance;
@@ -30,7 +27,6 @@ public final class AdapterPatientIdentifier extends Adapter<List<Identifier>> {
 	@Override
 	public List<Identifier> mapRow(ResultSet rs, int rownumber) throws SQLException {
 		List<Identifier> retVal = new ArrayList<Identifier>();
-		ICoding iCoding = new CodingPatientIdentifier(PatientIdentifier.URL, org.hl7.fhir.valueset.Identifier.value.TAX);
 
 		int indexTax = -1;
 		String valueTax = null;
@@ -44,7 +40,7 @@ public final class AdapterPatientIdentifier extends Adapter<List<Identifier>> {
 		if(valueTax != null) {
 			Identifier identifier = new Identifier();
 			identifier.setUse(IdentifierUse.OFFICIAL);
-			identifier.setType(HelperCodeableConcept.create(iCoding.getSystem(), iCoding.getValue()));
+			identifier.setType(HelperCodeableConcept.create("http://www.saude.gov.br/fhir/r4/CodeSystem/BRTipoIdentificador", "TAX"));
 			identifier.setValue(valueTax);
 			retVal.add(identifier);
 		}

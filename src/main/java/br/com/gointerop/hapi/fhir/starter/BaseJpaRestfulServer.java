@@ -16,10 +16,7 @@ import org.springframework.context.ApplicationContext;
 import org.springframework.http.HttpHeaders;
 import org.springframework.web.cors.CorsConfiguration;
 
-import br.com.gointerop.hapi.fhir.provider.ProviderOrganization;
 import br.com.gointerop.hapi.fhir.provider.ProviderPatient;
-import br.com.gointerop.hapi.fhir.provider.ProviderPractitioner;
-//import br.com.gointerop.hapi.fhir.provider.PatientResourceProvider;
 import ca.uhn.fhir.context.FhirContext;
 import ca.uhn.fhir.context.FhirVersionEnum;
 import ca.uhn.fhir.interceptor.api.IInterceptorBroadcaster;
@@ -116,8 +113,6 @@ public class BaseJpaRestfulServer extends RestfulServer {
     setFhirContext(appCtx.getBean(FhirContext.class));
 
     registerProvider(new ProviderPatient(appCtx.getBean(FhirContext.class)));
-    registerProvider(new ProviderPractitioner(appCtx.getBean(FhirContext.class)));
-    registerProvider(new ProviderOrganization(appCtx.getBean(FhirContext.class)));
     registerProviders(resourceProviders.createProviders());
     registerProvider(systemProvider);
 

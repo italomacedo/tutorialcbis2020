@@ -10,13 +10,8 @@ public class TranslatorFactory {
 		case PATIENT:
 			iTranslator = new TranslatorPatient();
 			break;
-		case PRACTITIONER:
-			iTranslator = new TranslatorPractitioner();
-			break;
-		case ORGANIZATION:
-			iTranslator = new TranslatorOrganization();
 		}
-
+		
 		return iTranslator;
 	}
 }

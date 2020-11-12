@@ -8,7 +8,6 @@ import org.hl7.fhir.r4.model.Patient;
 
 import br.com.gointerop.hapi.fhir.adapter.Adapter;
 import br.com.gointerop.hapi.fhir.adapter.IAdapter;
-import br.gov.pe.recife.esus.Profile;
 
 public final class AdapterPatient extends Adapter<Patient> implements IAdapter<Patient> {
 	private static IAdapter<Patient> instance;
@@ -25,7 +24,6 @@ public final class AdapterPatient extends Adapter<Patient> implements IAdapter<P
 	public Patient mapRow(ResultSet rs, int rownumber) throws SQLException {
 		Patient retVal = new Patient();
 		
-		retVal.setMeta(HelperMeta.create(Profile.PROFILE_PATIENT));
 		retVal.setId(AdapterPatientId.getInstance().mapRow(rs, rownumber));
 		retVal.setIdentifier(AdapterPatientIdentifier.getInstance().mapRow(rs, rownumber));
 		retVal.setName(AdapterPatientHumanName.getInstance().mapRow(rs, rownumber));

@@ -112,7 +112,7 @@ public class BaseJpaRestfulServer extends RestfulServer {
 
     setFhirContext(appCtx.getBean(FhirContext.class));
 
-    registerProvider(new ProviderPatient(appCtx.getBean(FhirContext.class)));
+    registerProvider(new ProviderPatient());
     registerProviders(resourceProviders.createProviders());
     registerProvider(systemProvider);
 

@@ -1,12 +1,7 @@
 package br.com.gointerop.hapi.fhir.provider;
 
-import java.util.Collections;
 import java.util.HashMap;
-import java.util.LinkedHashMap;
-import java.util.LinkedList;
 import java.util.List;
-import java.util.Map;
-import java.util.TreeMap;
 
 import org.hl7.fhir.instance.model.api.IBaseResource;
 import org.hl7.fhir.instance.model.api.IIdType;
@@ -14,7 +9,6 @@ import org.hl7.fhir.r4.model.Patient;
 
 import br.com.gointerop.hapi.fhir.controller.ControllerPatient;
 import br.com.gointerop.hapi.fhir.controller.IController;
-import ca.uhn.fhir.context.FhirContext;
 import ca.uhn.fhir.rest.annotation.IdParam;
 import ca.uhn.fhir.rest.annotation.OptionalParam;
 import ca.uhn.fhir.rest.annotation.Read;
@@ -28,16 +22,9 @@ import ca.uhn.fhir.rest.server.IResourceProvider;
 
 public class ProviderPatient implements IResourceProvider {
 	private IController<Patient> iControllerPatient = ControllerPatient.getInstance();
-
-	FhirContext fhirContext;
-
-	protected Map<String, TreeMap<Long, Patient>> myIdToVersionToResourceMap = Collections
-			.synchronizedMap(new LinkedHashMap<>());
-	protected Map<String, LinkedList<Patient>> myIdToHistory = Collections.synchronizedMap(new LinkedHashMap<>());
-	protected LinkedList<Patient> myTypeHistory = new LinkedList<>();
-
-	public ProviderPatient(FhirContext fhirContext) {
-		this.fhirContext = fhirContext;
+	
+	public ProviderPatient() {
+		super();
 	}
 
 	@Override

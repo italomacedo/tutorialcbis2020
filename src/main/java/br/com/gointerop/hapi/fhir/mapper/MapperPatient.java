@@ -21,7 +21,8 @@ public class MapperPatient extends Mapper {
 	public static final String addressCity = "co_localidade";
 	public static final String email = "ds_email";
 	public static final String given = "no_cidadao";
-	public static final String identifier = "nu_cpf";
+	public static final String identifier = null;
+	public static final String identifier_cpf = "nu_cpf";
 	public static final String address = "ds_logradouro";
 	public static final String generalPractitioner = null;
 	public static final String active = "st_ativo_para_exibicao";

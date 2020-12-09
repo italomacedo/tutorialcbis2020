@@ -113,8 +113,8 @@ public class BaseJpaRestfulServer extends RestfulServer {
     setFhirContext(appCtx.getBean(FhirContext.class));
 
     registerProvider(new ProviderPatient());
-    registerProviders(resourceProviders.createProviders());
-    registerProvider(systemProvider);
+    //registerProviders(resourceProviders.createProviders());
+    //registerProvider(systemProvider);
 
     /*
      * The conformance provider exports the supported resources, search parameters, etc for

@@ -12,6 +12,7 @@ import org.hl7.fhir.r4.model.Identifier.IdentifierUse;
 import br.com.gointerop.hapi.fhir.adapter.Adapter;
 import br.com.gointerop.hapi.fhir.adapter.IAdapter;
 import br.com.gointerop.hapi.fhir.mapper.MapperPatient;
+import br.gov.saude.namingsystem.CPF;
 
 public final class AdapterPatientIdentifier extends Adapter<List<Identifier>> {
 	private static IAdapter<List<Identifier>> instance;
@@ -32,15 +33,14 @@ public final class AdapterPatientIdentifier extends Adapter<List<Identifier>> {
 		String valueTax = null;
 		
 		try {
-			 indexTax = rs.findColumn(MapperPatient.identifier);
+			 indexTax = rs.findColumn(MapperPatient.identifier_cpf);
 		} catch (SQLException e) {}
 		
 		if (indexTax > -1) valueTax = rs.getString(indexTax);
 		
 		if(valueTax != null) {
 			Identifier identifier = new Identifier();
-			identifier.setUse(IdentifierUse.OFFICIAL);
-			identifier.setType(HelperCodeableConcept.create("http://www.saude.gov.br/fhir/r4/CodeSystem/BRTipoIdentificador", "TAX"));
+			identifier.setSystem(CPF.URL);
 			identifier.setValue(valueTax);
 			retVal.add(identifier);
 		}

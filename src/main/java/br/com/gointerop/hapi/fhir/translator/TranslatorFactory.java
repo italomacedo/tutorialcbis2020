@@ -10,6 +10,9 @@ public class TranslatorFactory {
 		case PATIENT:
 			iTranslator = new TranslatorPatient();
 			break;
+		case IDENTIFIER:
+			iTranslator = new TranslatorIdentifier();
+			break;
 		}
 		
 		return iTranslator;

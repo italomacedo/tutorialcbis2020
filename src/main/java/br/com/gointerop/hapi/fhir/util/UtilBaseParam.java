@@ -12,14 +12,32 @@ import ca.uhn.fhir.rest.param.NumberParam;
 import ca.uhn.fhir.rest.param.StringParam;
 
 public class UtilBaseParam {
+	public static String toSystem(BaseParam value) {
+		String retVal = null;
+
+		if (value instanceof StringParam)
+			retVal = ((StringParam) value).getValue();
+
+		if(retVal != null && retVal.contains("|")) {
+			retVal = retVal.split("\\|")[retVal.split("\\|").length-2];
+		}
+		
+		return retVal;
+	}
+	
 	public static String toValue(BaseParam value) {
 		String retVal = null;
 
 		if (value instanceof NumberParam)
 			retVal = ((NumberParam) value).getValue() + "";
 
-		if (value instanceof StringParam)
+		if (value instanceof StringParam) {
 			retVal = ((StringParam) value).getValue();
+			
+			if(retVal != null && retVal.contains("|")) {
+				retVal = retVal.split("\\|")[retVal.split("\\|").length-1];
+			}
+		}
 
 		if (value instanceof DateParam)
 			retVal = UtilDate.toISOString(((DateParam) value).getValue());
